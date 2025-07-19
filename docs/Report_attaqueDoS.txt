@@ -1,0 +1,21 @@
+Attack – HTTP Slowloris (DoS)
+
+Target: Local Python HTTP server (http.server) running on localhost:8080  
+Method: 1000 incomplete HTTP/1.1 requests with periodic keep-alive headers  
+Tool: Custom Python script (slowloris_attack.py)  
+Traffic Captured: Wireshark filtered on tcp.port == 8080  
+Observed Effect:
+- Before attack: 
+*response time = 71 ms
+*curl responded instantly (HTTP 200 OK)
+- During attack: 
+*response time = 1132 ms
+*Several requests failed with: ConnectionAbortedError [WinError 10053]
+*Server closed many sockets due to overload
+
+Conclusion:
+The HTTP server experienced clear performance degradation and
+abnormal connection termination. This confirms a successful
+application-layer Denial of Service (DoS) using a Slowloris-style 
+attack. The impact was measurable through increased response time
+and aborted client connections.

@@ -1,0 +1,15 @@
+Attack – Modbus TCP Read (Unauthorized Register Access)
+
+- Target: Local Modbus TCP Server (`127.0.0.1:502`)
+- Tools:
+  - Server: Python + `modbus-tk`
+  - Client: Python + `pymodbus`
+- Action:
+  - Sent a `Read Holding Registers` request for address `0`, count `4`, with `slave ID = 1`
+  - No authentication required
+- Result:
+  - Successfully retrieved register values: `[20, 30, 40, 50]`
+  - Wireshark capture confirms Modbus request/response exchange on TCP port 502
+- Conclusion:
+  - Modbus lacks authentication and encryption.
+  - Any device with network access can read or write registers without restriction.
