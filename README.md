@@ -30,7 +30,7 @@ ics-attacks-project/
 │       └── during_slowloris.PNG          # Latency during attack
 │
 ├── README.md                         
-└── requirements.txt                  ← Required libraries
+└── requirements.txt                 
 ```
 
 ---
